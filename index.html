@@ -283,6 +283,74 @@ footer{padding:var(--space-8);border-top:1px solid var(--color-border);display:f
 .fade-up.d1{ animation-delay:.12s; opacity:0; }
 .fade-up.d2{ animation-delay:.24s; opacity:0; }
 .fade-up.d3{ animation-delay:.36s; opacity:0; }
+/* MEDIA PLAN TABLE */
+.media-table-wrap {
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+}
+.media-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-body);
+  font-size: .75rem;
+  white-space: nowrap;
+}
+.media-table thead tr {
+  background: rgba(255,255,255,.04);
+  border-bottom: 1px solid var(--color-border);
+}
+.media-table th {
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--alkimi-grey-mid);
+  font-size: .6875rem;
+}
+.media-table td {
+  padding: 10px 14px;
+  color: var(--alkimi-grey-light);
+  border-bottom: 1px solid rgba(255,255,255,.04);
+  font-weight: 300;
+}
+.media-table tbody tr:last-child td { border-bottom: none; }
+.media-table tbody tr:hover td { background: rgba(255,255,255,.03); }
+.geo-row td {
+  padding: 10px 14px 6px;
+  font-weight: 600;
+  font-size: .75rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--alkimi-white);
+  background: rgba(92,38,255,.06);
+  border-bottom: 1px solid var(--color-border);
+}
+.geo-dot {
+  display: inline-block;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--alkimi-purple);
+  margin-right: 6px;
+  vertical-align: middle;
+  margin-bottom: 1px;
+}
+.fmt-badge {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: .6rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: var(--radius-full);
+}
+.fmt-ctv    { background: rgba(92,38,255,.18);  color: var(--alkimi-purple-light); }
+.fmt-tradfi { background: rgba(92,38,255,.12);  color: var(--alkimi-purple-light); }
+.fmt-video  { background: rgba(92,38,255,.10);  color: var(--alkimi-purple-light); }
+.fmt-crypto { background: rgba(0,232,123,.12);  color: var(--alkimi-green); }
+
 /* RESPONSIVE */
 @media(max-width:900px){
   .navbar{padding:16px var(--space-6);}
@@ -340,13 +408,66 @@ footer{padding:var(--space-8);border-top:1px solid var(--color-border);display:f
         <span class="brand-chip">Sui</span>
         <span class="brand-chip">Crypto.com</span>
         <span class="brand-chip">American Express</span>
+        <span class="brand-chip">Monzo</span>
         <span class="brand-chip">+ More</span>
       </div>
     </div>
   </div>
 
   <div class="hero-right">
-    <p style="font-family:var(--font-body);font-size:1rem;font-weight:300;color:var(--alkimi-grey-light);line-height:1.6;padding:0 var(--space-2);margin-bottom:var(--space-2);">Whether you're reaching crypto native or TradFi/consumers, Alkimi is the solution for you.</p>
+    <p style="font-family:var(--font-body);font-size:1rem;font-weight:300;color:var(--alkimi-grey-light);line-height:1.6;padding:0 var(--space-2);margin-bottom:var(--space-3);">Whether you're reaching crypto native or TradFi/consumers, Alkimi is the solution for you.</p>
+    <p style="font-family:var(--font-body);font-size:.875rem;font-weight:300;color:var(--alkimi-grey-mid);line-height:1.7;padding:0 var(--space-2);margin-bottom:var(--space-4);">Below is an example media plan for the US. Alkimi is a global company with scale across all core markets. Please reach out to Alkimi to discuss what a campaign tailored to your brand would look like.</p>
+
+    <!-- Media Plan Table -->
+    <div class="media-table-wrap fade-up">
+      <table class="media-table">
+        <thead>
+          <tr>
+            <th>Geo</th>
+            <th>Format</th>
+            <th>Targeting / Inventory</th>
+            <th>Buying</th>
+            <th>Viewability</th>
+            <th>CTR</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="geo-row"><td colspan="6"><span class="geo-dot"></span> US</td></tr>
+          <tr>
+            <td></td>
+            <td><span class="fmt-badge fmt-ctv">CTV</span></td>
+            <td>Premium CTV — TradFi Branding · :15/:30</td>
+            <td>CPM</td>
+            <td>95.00%</td>
+            <td>n/a</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><span class="fmt-badge fmt-tradfi">TradFi</span></td>
+            <td>100% Share of Screen — TradFi Branding</td>
+            <td>CPM</td>
+            <td>95.00%</td>
+            <td>0.12%</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><span class="fmt-badge fmt-video">Video</span></td>
+            <td>Video — TradFi Branding · up to :30</td>
+            <td>CPM</td>
+            <td>95.00%</td>
+            <td>0.12%</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><span class="fmt-badge fmt-crypto">Crypto</span></td>
+            <td>Display — Crypto · Alkimi Studio</td>
+            <td>CPM</td>
+            <td>70.00%</td>
+            <td>0.08%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <div class="card fade-up">
       <div class="card-type">Premium Publishers</div>
       <div class="card-title">Tier 1 CTV · Finance · Sport · News</div>
@@ -410,11 +531,18 @@ footer{padding:var(--space-8);border-top:1px solid var(--color-border);display:f
 </footer>
 
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // Build mailto at runtime to prevent Cloudflare obfuscation
-  const addr = 'lauren' + '@' + 'alkimi.org';
-  const mailto = 'mailto:' + addr;
-  document.querySelectorAll('.demo-link').forEach(el => {
-    el.setAttribute('href', mailto);
-    el.style.cursor = 'pointer';
- 
+<script data-cfasync="false">
+  (function() {
+    var u = 'lauren', d = 'alkimi.org';
+    var ml = 'mailto:' + u + '\u0040' + d;
+    document.querySelectorAll('.demo-link, .demo-link-inline').forEach(function(el) {
+      el.setAttribute('href', ml);
+      el.style.cursor = 'pointer';
+      if (el.classList.contains('demo-link-inline') && !el.textContent.trim()) {
+        el.textContent = u + '@' + d;
+      }
+    });
+  })();
+</script>
+</body>
+</html>
