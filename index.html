@@ -438,7 +438,7 @@ footer{padding:var(--space-8);border-top:1px solid var(--color-border);display:f
   <span class="nav-tag">Built on Sui · Blockchain Verified</span>
   <div style="display:flex;align-items:center;gap:var(--space-3);">
     <a class="btn-secondary" href="https://docsend.com/view/sy2gasj67bxxytd5" target="_blank" rel="noopener">View Alkimi Deck</a>
-    <a class="btn-primary demo-link">Learn More - Book a Meeting</a>
+    <a class="btn-primary" href="mai&#108;to&#58;&#108;auren&#64;a&#108;kimi&#46;org">Learn More - Book a Meeting</a>
   </div>
 </nav>
 
@@ -449,7 +449,7 @@ footer{padding:var(--space-8);border-top:1px solid var(--color-border);display:f
     <h1 class="title">The DSP<br><span class="grad">Built for</span><br>Crypto.</h1>
     <p class="hero-sub">Alkimi is the only DSP that gives Web3 brands direct access to Crypto Native Traders, Retail Investors, and Mainstream Consumers - all in one place.</p>
     <div class="hero-actions">
-      <a class="btn-primary demo-link">Learn More - Book a Meeting</a>
+      <a class="btn-primary" href="mai&#108;to&#58;&#108;auren&#64;a&#108;kimi&#46;org">Learn More - Book a Meeting</a>
     </div>
     <div class="trusted-strip">
       <p class="trusted-label">Trusted by leading Crypto and Web2 brands</p>
@@ -559,7 +559,7 @@ footer{padding:var(--space-8);border-top:1px solid var(--color-border);display:f
     <span class="overline">Ready to scale?</span>
     <h2 class="cta-title">Maximise your 2026 global advertising strategy.</h2>
     <p class="cta-sub">Talk to our crypto advertising specialists and get a tailored media plan.</p>
-    <p class="cta-email"><a class="demo-link-inline"></a> · Global Head of Sales, Crypto</p>
+    <p class="cta-email"><a href="mai&#108;to&#58;&#108;auren&#64;a&#108;kimi&#46;org" style="color:var(--alkimi-purple-light);text-decoration:none;">&#108;auren&#64;a&#108;kimi.org</a> · Global Head of Sales, Crypto</p>
   </div>
 </section>
 
@@ -599,37 +599,24 @@ footer{padding:var(--space-8);border-top:1px solid var(--color-border);display:f
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false">
-  (function() {
-    var u = 'lauren', d = 'alkimi.org';
-    var ml = 'mailto:' + u + '\u0040' + d;
-    var addr = u + '\u0040' + d;
+<script>
+(function() {
+  var u = 'lauren', d = 'alkimi.org';
+  var addr = u + '@' + d;
+  var ml = 'mailto:' + addr;
 
-    // Wire inline email link in footer CTA
-    document.querySelectorAll('.demo-link-inline').forEach(function(el) {
-      el.setAttribute('href', ml);
-      el.style.cursor = 'pointer';
-      if (!el.textContent.trim()) { el.textContent = addr; }
-    });
+  // Wire inline email link
+  document.querySelectorAll('.demo-link-inline').forEach(function(el) {
+    el.setAttribute('href', ml);
+    el.textContent = addr;
+  });
 
-    // Set modal email href
-    var modalLink = document.getElementById('modalEmailLink');
-    if (modalLink) { modalLink.setAttribute('href', ml); modalLink.textContent = addr; }
-
-    // Open modal on Book a Meeting clicks
-    var modal = document.getElementById('contactModal');
-    document.querySelectorAll('.demo-link').forEach(function(el) {
-      el.removeAttribute('href');
-      el.style.cursor = 'pointer';
-      el.addEventListener('click', function(e) {
-        e.preventDefault();
-        modal.classList.add('open');
-      });
-    });
-
-    // Close modal
-    document.getElementById('modalClose').addEventListener('click', function() {
-      modal.classList.remove('open');
-    });
-    modal.addEventListener('click', function(e) {
-      if (e.target === modal)
+  // Wire Book a Meeting buttons -> simple mailto
+  document.querySelectorAll('.demo-link').forEach(function(el) {
+    el.setAttribute('href', ml);
+    el.style.cursor = 'pointer';
+  });
+})();
+</script>
+</body>
+</html>
