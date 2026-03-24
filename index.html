@@ -351,7 +351,60 @@ footer{padding:var(--space-8);border-top:1px solid var(--color-border);display:f
 .fmt-video  { background: rgba(92,38,255,.10);  color: var(--alkimi-purple-light); }
 .fmt-crypto { background: rgba(0,232,123,.12);  color: var(--alkimi-green); }
 
-/* RESPONSIVE */
+/* CONTACT MODAL */
+.modal-overlay{
+  display:none;position:fixed;inset:0;z-index:500;
+  background:rgba(0,0,0,.6);backdrop-filter:blur(6px);
+  align-items:center;justify-content:center;
+}
+.modal-overlay.open{display:flex;}
+.modal{
+  background:var(--surface-1);border:1px solid rgba(92,38,255,.3);
+  border-radius:var(--radius-xl);padding:var(--space-10) var(--space-8);
+  max-width:420px;width:90%;position:relative;
+  box-shadow:0 24px 64px rgba(0,0,0,.5),0 0 60px rgba(92,38,255,.1);
+  animation:modalIn .25s ease;
+}
+@keyframes modalIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+.modal-close{
+  position:absolute;top:16px;right:18px;
+  background:none;border:none;color:var(--alkimi-grey-mid);
+  font-size:1.25rem;cursor:pointer;line-height:1;padding:4px;
+  transition:color .2s;
+}
+.modal-close:hover{color:var(--alkimi-white);}
+.modal-eyebrow{
+  font-family:var(--font-body);font-size:.6875rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--alkimi-purple);
+  margin-bottom:var(--space-4);
+}
+.modal-name{
+  font-family:var(--font-title);font-size:1.2rem;font-weight:500;
+  text-transform:uppercase;letter-spacing:-.01em;color:var(--alkimi-white);
+  margin-bottom:var(--space-2);line-height:1.2;
+}
+.modal-role{
+  font-size:.875rem;color:var(--alkimi-grey-light);font-weight:300;
+  margin-bottom:var(--space-8);
+}
+.modal-divider{height:1px;background:var(--color-border);margin-bottom:var(--space-6);}
+.modal-email-label{
+  font-family:var(--font-body);font-size:.6875rem;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--alkimi-grey-mid);
+  margin-bottom:var(--space-2);
+}
+.modal-email-link{
+  display:inline-flex;align-items:center;gap:var(--space-2);
+  font-size:1rem;font-weight:500;color:var(--alkimi-green);
+  text-decoration:none;transition:color .2s;
+  word-break:break-all;
+}
+.modal-email-link:hover{color:var(--alkimi-green-light);}
+.modal-email-link::before{
+  content:'';display:inline-block;width:8px;height:8px;
+  border-radius:50%;background:var(--alkimi-green);flex-shrink:0;
+}
+
 @media(max-width:900px){
   .navbar{padding:16px var(--space-6);}
   .nav-tag{display:none;}
@@ -530,16 +583,59 @@ footer{padding:var(--space-8);border-top:1px solid var(--color-border);display:f
 </footer>
 
 
+<!-- CONTACT MODAL -->
+<div class="modal-overlay" id="contactModal" role="dialog" aria-modal="true">
+  <div class="modal">
+    <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+    <div class="modal-eyebrow">Get in touch</div>
+    <div class="modal-name">Lauren Lafferty</div>
+    <div class="modal-role">Global Head of Sales, Crypto</div>
+    <div class="modal-divider"></div>
+    <div class="modal-email-label">Email</div>
+    <a class="modal-email-link" id="modalEmailLink">lauren@alkimi.org</a>
+    <div class="modal-divider" style="margin-top:var(--space-6);"></div>
+    <div class="modal-email-label">Telegram</div>
+    <a class="modal-email-link" href="https://t.me/lauren_lafferty" target="_blank" rel="noopener" style="color:var(--alkimi-green);">@lauren_lafferty</a>
+  </div>
+</div>
+
 <script data-cfasync="false">
   (function() {
     var u = 'lauren', d = 'alkimi.org';
     var ml = 'mailto:' + u + '\u0040' + d;
-    document.querySelectorAll('.demo-link, .demo-link-inline').forEach(function(el) {
+    var addr = u + '\u0040' + d;
+
+    // Wire inline email link in footer CTA
+    document.querySelectorAll('.demo-link-inline').forEach(function(el) {
       el.setAttribute('href', ml);
       el.style.cursor = 'pointer';
-      if (el.classList.contains('demo-link-inline') && !el.textContent.trim()) {
-        el.textContent = u + '@' + d;
-      }
+      if (!el.textContent.trim()) { el.textContent = addr; }
+    });
+
+    // Set modal email href
+    var modalLink = document.getElementById('modalEmailLink');
+    if (modalLink) { modalLink.setAttribute('href', ml); modalLink.textContent = addr; }
+
+    // Open modal on Book a Meeting clicks
+    var modal = document.getElementById('contactModal');
+    document.querySelectorAll('.demo-link').forEach(function(el) {
+      el.removeAttribute('href');
+      el.style.cursor = 'pointer';
+      el.addEventListener('click', function(e) {
+        e.preventDefault();
+        modal.classList.add('open');
+      });
+    });
+
+    // Close modal
+    document.getElementById('modalClose').addEventListener('click', function() {
+      modal.classList.remove('open');
+    });
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) modal.classList.remove('open');
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') modal.classList.remove('open');
     });
   })();
 </script>
