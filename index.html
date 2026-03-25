@@ -437,7 +437,7 @@ footer{padding:var(--space-8);border-top:1px solid var(--color-border);display:f
   <span class="nav-tag">Built on Sui · Blockchain Verified</span>
   <div style="display:flex;align-items:center;gap:var(--space-3);">
     <a class="btn-secondary" href="https://docsend.com/view/sy2gasj67bxxytd5" target="_blank" rel="noopener">View Alkimi Deck</a>
-    <button class="btn-primary" onclick="document.getElementById('contactModal').classList.add('open');">Learn More - Book a Meeting</button>
+    <button class="btn-primary open-modal">Learn More - Book a Meeting</button>
   </div>
 </nav>
 
@@ -448,7 +448,7 @@ footer{padding:var(--space-8);border-top:1px solid var(--color-border);display:f
     <h1 class="title">The Marketplace<br><span class="grad">Built for</span><br>Crypto.</h1>
     <p class="hero-sub">Alkimi is the only Marketplace that gives Web3 brands direct access to Crypto Native Traders, Retail Investors, and Mainstream Consumers - all in one place.</p>
     <div class="hero-actions">
-      <button class="btn-primary" onclick="document.getElementById('contactModal').classList.add('open');">Learn More - Book a Meeting</button>
+      <button class="btn-primary open-modal">Learn More - Book a Meeting</button>
     </div>
     <div class="trusted-strip">
       <p class="trusted-label">Trusted by leading Crypto and Web2 brands</p>
@@ -541,7 +541,7 @@ footer{padding:var(--space-8);border-top:1px solid var(--color-border);display:f
     <span class="overline">Ready to scale?</span>
     <h2 class="cta-title">Maximise your 2026 global advertising strategy.</h2>
     <p class="cta-sub">Talk to our crypto advertising specialists and get a tailored media plan.</p>
-    <p class="cta-email"><span style="color:var(--alkimi-purple-light);"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7e121f0b0c1b103e1f121517131750110c19">[email&#160;protected]</a></span> · Global Head of Sales, Crypto</p>
+    <p class="cta-email"><span id="ctaEmailDisplay" style="color:var(--alkimi-purple-light);"></span> · Global Head of Sales, Crypto</p>
   </div>
 </section>
 
@@ -581,7 +581,25 @@ footer{padding:var(--space-8);border-top:1px solid var(--color-border);display:f
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 (function() {
+  // Render email from char codes - Cloudflare cannot detect this
+  var e = [108,97,117,114,101,110,64,97,108,107,105,109,105,46,111,114,103];
+  var addr = e.map(function(c){return String.fromCharCode(c);}).join('');
+  var el = document.getElementById('modalEmailDisplay');
+  if (el) el.textContent = addr;
+  var el2 = document.getElementById('ctaEmailDisplay');
+  if (el2) el2.textContent = addr;
+
   // Modal open/close
-  var modal = document.getElementById('contactModal')
+  var modal = document.getElementById('contactModal');
+  var closeBtn = document.getElementById('modalClose');
+  document.querySelectorAll('.open-modal').forEach(function(btn) {
+    btn.addEventListener('click', function() { modal.classList.add('open'); });
+  });
+  if (closeBtn) closeBtn.addEventListener('click', function() { modal.classList.remove('open'); });
+  if (modal) modal.addEventListener('click', function(e) { if (e.target === modal) modal.classList.remove('open'); });
+})();
+</script>
+</body>
+</html>
